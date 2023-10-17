@@ -20,16 +20,18 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("Goal"):
-		complete_level(body.file_path)
+		var file_path = body.file_path
+		Assert.string_not_empty(file_path)
+		complete_level(file_path)
 	elif body.is_in_group("Failure"):
 		crash_sequence()
 
 
 func complete_level(next_level_file: String) -> void:
 	print("Level complete!")
-	get_tree().change_scene_to_file(next_level_file)
+	Assert.error_ok(get_tree().change_scene_to_file(next_level_file))
 
 
 func crash_sequence() -> void:
 	print("Kaboom!")
-	get_tree().reload_current_scene()
+	Assert.error_ok(get_tree().reload_current_scene())

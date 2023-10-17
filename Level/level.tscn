@@ -59,3 +59,4 @@ file_path = "res://Level/level.tscn"
 
 [node name="Player" parent="." instance=ExtResource("1_7dx5t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2.5, 0)
+thrust = 1000.0
