@@ -40,6 +40,7 @@ func _on_body_entered(body: Node) -> void:
 
 func complete_level(next_level_file: String) -> void:
 	print("Level complete!")
+	rocket_audio.stop()
 	success_audio.play()
 	set_physics_process(false)
 	is_transitioning = true
@@ -50,6 +51,7 @@ func complete_level(next_level_file: String) -> void:
 
 func crash_sequence() -> void:
 	print("Kaboom!")
+	rocket_audio.stop()
 	explosion_audio.play()
 	set_physics_process(false)
 	is_transitioning = true
