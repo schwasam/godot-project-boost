@@ -5,6 +5,6 @@
 # See: https://github.com/Scony/godot-gdscript-toolkit
 
 $projectPath = '../'
-$maxLineLength = 120
+$maxLineLength = 100
 
 gdformat $projectPath --line-length $maxLineLength
