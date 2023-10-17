@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Python virtual environment
+DevScripts/Python/venv
