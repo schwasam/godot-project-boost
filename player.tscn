@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://buqja4c4le0yc"]
+[gd_scene load_steps=10 format=3 uid="uid://buqja4c4le0yc"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_bhqjo"]
 [ext_resource type="AudioStream" uid="uid://cfc07uhnrut1c" path="res://Audio/SFX - Death Explosion.ogg" id="2_1oki1"]
 [ext_resource type="AudioStream" uid="uid://cl2y7s47dres2" path="res://Audio/SFX - Success.ogg" id="3_vyvdc"]
 [ext_resource type="AudioStream" uid="uid://qd5f6d1rdksy" path="res://Audio/SFX - Main engine thrust.ogg" id="4_8nf57"]
+[ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://Particles/booster_particles.tscn" id="5_fl7wr"]
+[ext_resource type="PackedScene" uid="uid://dcecb8hw7dbrv" path="res://Particles/explosion_particles.tscn" id="6_ve71r"]
+[ext_resource type="PackedScene" uid="uid://jfwajmrh6ca7" path="res://Particles/success_particles.tscn" id="7_b5e6v"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_j4kmh"]
 
@@ -26,13 +29,26 @@ mesh = SubResource("CylinderMesh_j4kmh")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_ors77")
 
-[node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_1oki1")
+[node name="RocketAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_8nf57")
 
 [node name="SuccessAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vyvdc")
 
-[node name="RocketAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_8nf57")
+[node name="ExplosionAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1oki1")
+
+[node name="BoosterParticles" parent="." instance=ExtResource("5_fl7wr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="RightBoosterParticles" parent="." instance=ExtResource("5_fl7wr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -1, 0)
+
+[node name="LeftBoosterParticles" parent="." instance=ExtResource("5_fl7wr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, -1, 0)
+
+[node name="SuccessParticles" parent="." instance=ExtResource("7_b5e6v")]
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("6_ve71r")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
